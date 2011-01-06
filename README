@@ -1,0 +1,60 @@
+                     _____    ___ ___                     
+                    /  _  \  |   |   |  _____ _____ _____ 
+                   |       |  >     <  |  _  |  -__|     |
+                   |___|___| |___|___| |___  |_____|__|__|
+                                       |_____|            
+
+README
+
+The axgen tool is a command-line interface application and shell that provides
+a set of functions intended to assists in the generation of ASTERIX datablocks
+from ASTERIX records definitions declared in the LUA programming language.
+
+
+
+REFERENCES
+
+* ASTERIX page at Eurocontrol (http://www.eurocontrol.int/asterix/)
+
+ASTERIX is the EUROCONTROL Standard for the exchange of Surveillance related
+data.
+
+The acronym stands for "All Purpose STructured Eurocontrol SuRveillance
+Information EXchange".
+
+ASTERIX provides a structured approach to a message format to be applied in
+the exchange of surveillance related information for various applications.
+Developed by the SuRveillance Data Exchange Task Force (RDE-TF) with its
+multinational participation, it ensures a common data representation, thereby
+facilitating the exchange of surveillance data in an international context.
+
+Having started as a EUROCONTROL development, ASTERIX is now applied worldwide.
+
+ASTERIX defines a structured approach to the encoding of surveillance data.
+Categories group the information related to a specific application. They
+consist of a number of data items which are defined in the ASTERIX documents
+down to the bit-level.
+
+
+* Lua.org — official site (http://www.lua.org/)
+
+Lua is a powerful, fast, lightweight, embeddable scripting language.
+
+Lua combines simple procedural syntax with powerful data description
+constructs based on associative arrays and extensible semantics. Lua
+is dynamically typed, runs by interpreting bytecode for a register-based
+virtual machine, and has automatic memory management with incremental
+garbage collection, making it ideal for configuration, scripting, and
+rapid prototyping.
+
+
+
+
+GIT
+
+  To download the very latest source off the GIT server do this:
+
+    git clone git://github.com/frenolfi/axgen.git
+
+  (you'll get a directory named axgen created, filled with the source code)
+
