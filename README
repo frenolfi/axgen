@@ -10,6 +10,52 @@ The axgen tool is a command-line interface application and shell that provides
 a set of functions intended to assists in the generation of ASTERIX datablocks
 from ASTERIX records definitions declared in the LUA programming language.
 
+EXAMPLE
+
+Given the following definitions of monoradar service messages:
+
+  north = {
+   type    = "north",    -- north marker message record
+   arp     = 4000,       -- [ms] antenna rotation period
+  }
+
+  sector = {
+   type    = "sector",   -- sector crossing message record
+   azimuth = 0,          -- [degrees] (0 == north, 180 == south)
+  }
+
+
+An ASTERIX data block of data category 34 is generated with:
+
+  data = asterix.new(34)
+  data:add(north)        -- append the "north" record to the data block
+  data:add(sector)       -- append the "sector" record to the data block
+
+All the mandatory fields had been automatically completed.
+
+In this example, data source identifiers are set to the value of global
+variables asterix.sac and asterix.sic (both default to zero on program start).
+
+Field Specification (FSPEC) fields are automatically calculated for both
+records according to the presence (or absence) of optional data fields (as
+arp in the north record).
+
+Also, the data block length has been properly set.
+
+The same can be achieved by the following alternative call to asterix.new():
+
+  data = asterix.new(34, {type="north",arp=4000}, {type="sector",azimuth=0})
+
+Finally, the generated data block may be inspected in the shell by:
+
+  > print(data.cat)        -- data category field (CAT)
+  34
+
+  > print(data.len)        -- data block length field (LEN)
+  20
+
+  > print(data.raw)        -- hex string representation of the data block
+  22 00 14 E8 00 00 01 15 D6 47 02 00 F0 00 00 02 15 D8 FD 00
 
 
 REFERENCES
@@ -36,18 +82,20 @@ consist of a number of data items which are defined in the ASTERIX documents
 down to the bit-level.
 
 
-* Lua.org — official site (http://www.lua.org/)
+* Lua.org - official site (http://www.lua.org/)
 
 Lua is a powerful, fast, lightweight, embeddable scripting language.
 
-Lua combines simple procedural syntax with powerful data description
-constructs based on associative arrays and extensible semantics. Lua
-is dynamically typed, runs by interpreting bytecode for a register-based
-virtual machine, and has automatic memory management with incremental
-garbage collection, making it ideal for configuration, scripting, and
-rapid prototyping.
+Lua combines simple procedural syntax with powerful data description constructs
+based on associative arrays and extensible semantics. Lua is dynamically typed,
+runs by interpreting bytecode for a register-based virtual machine, and has
+automatic memory management with incremental garbage collection, making it
+ideal for configuration, scripting, and rapid prototyping.
 
 
+DEPENDENCIES
+
+* Lua 5.1 - (http://www.lua.org/)
 
 
 GIT
