@@ -1,37 +1,50 @@
-                     _____    ___ ___                     
-                    /  _  \  |   |   |  _____ _____ _____ 
-                   |       |  >     <  |  _  |  -__|     |
-                   |___|___| |___|___| |___  |_____|__|__|
-                                       |_____|            
+INTRODUCTION
 
-README
+The axgen tool is a command-line interface application and interactive shell
+that assists the user in the generation of ASTERIX data blocks.
 
-The axgen tool is a command-line interface application and shell that provides
-a set of functions intended to assists in the generation of ASTERIX datablocks
-from ASTERIX records definitions declared in the LUA programming language.
+Data blocks are generated from records definitions, declared in the Lua
+programming language.
 
-EXAMPLE
+
+DESCRIPTION
+
+When invoked without parameters, axgen starts in interactive mode, presenting
+the user with a short banner, followed by the prompt:
+
+  $ axgen
+                       _____    ___ ___                     
+                      /  _  \  |   |   |  _____ _____ _____ 
+                     |       |  >     <  |  _  |  -__|     |
+                     |___|___| |___|___| |___  |_____|__|__|
+                                         |_____|            
+  
+  ASTERIX generator (C) Copyright 2010-2011 Federico Renolfi, Argentina
+  
+  Powered by:
+  Lua 5.1.4  Copyright (C) 1994-2008 Lua.org, PUC-Rio
+  > 
 
 Given the following definitions of monoradar service messages:
 
-  north = {
+  record1 = {
    type    = "north",    -- north marker message record
    arp     = 4000,       -- [ms] antenna rotation period
   }
 
-  sector = {
+  record2 = {
    type    = "sector",   -- sector crossing message record
    azimuth = 0,          -- [degrees] (0 == north, 180 == south)
   }
 
 
-An ASTERIX data block of data category 34 is generated with:
+An ASTERIX data block of data category 34 is generated within the shell by:
 
-  data = asterix.new(34)
-  data:add(north)        -- append the "north" record to the data block
-  data:add(sector)       -- append the "sector" record to the data block
+  > data = asterix.new(34)
+  > data:add(north)        -- append the "north" record to the data block
+  > data:add(sector)       -- append the "sector" record to the data block
 
-All the mandatory fields had been automatically completed.
+All the mandatory fields had been automatically completed by axgen.
 
 In this example, data source identifiers are set to the value of global
 variables asterix.sac and asterix.sic (both default to zero on program start).
@@ -44,9 +57,9 @@ Also, the data block length has been properly set.
 
 The same can be achieved by the following alternative call to asterix.new():
 
-  data = asterix.new(34, {type="north",arp=4000}, {type="sector",azimuth=0})
+  > data = asterix.new(34, {type="north",arp=4000}, {type="sector",azimuth=0})
 
-Finally, the generated data block may be inspected in the shell by:
+Finally, the generated data block may be inspected in by:
 
   > print(data.cat)        -- data category field (CAT)
   34
