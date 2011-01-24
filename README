@@ -41,8 +41,8 @@ Given the following definitions of monoradar service messages:
 An ASTERIX data block of data category 34 is generated within the shell by:
 
   > data = asterix.new(34)
-  > data:add(north)        -- append the "north" record to the data block
-  > data:add(sector)       -- append the "sector" record to the data block
+  > data:add(record1)    -- append the "north" record to the data block
+  > data:add(record2)    -- append the "sector" record to the data block
 
 All the mandatory fields had been automatically completed by axgen.
 
